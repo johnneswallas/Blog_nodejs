@@ -1,0 +1,22 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
+<body>
+    <div class="container">
+        <hr>
+        <div class="card mt-4">
+            <div class="card-header">
+                <h2>Novo usuário</h2>
+            </div>
+            <div class="card-body">
+                <form action="/user/create" method="post">
+                    <h4>Email:</h4>
+                    <input class="form-control" type="text" name="email" placeholder="insira seu email" required>
+                    <h4>Senha:</h4>
+                    <input class="form-control" type="text" name="password" placeholder="insira seu sua senha" required><br>
+                    <button class="btn btn-success w-100">Cadastrar</button>
+                </form>
+            </div>    
+        </div>
+    </div>
+</body>
+<%- include('../../partials/footer.ejs') %>

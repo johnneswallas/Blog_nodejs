@@ -1,0 +1,40 @@
+<%- include('../../partials/header.ejs') %> 
+<%- include('../../partials/navbar.ejs') %> 
+<body>
+    <div class="container">
+        <hr>
+        <h2>Categorias</h2>
+        <a href="/admin/articles/new"><button class="btn btn-success">Criar um novo artigo</button></a>
+        <hr>
+        <table class="table table-bordered">            <!-- crio uma tabela  -->
+            <thead>                                     <!-- crio o cabeçalho da tabela -->
+                <tr>                                    <!-- crio um alinha -->
+                    <th>ID</th>                         <!-- crio coluna -->
+                    <th>TÌTULO</th>
+                    <th>SLUG</th>
+                    <th>CATEGORIA</th>
+                    <th>AçÔES</th>
+                </tr>
+            </thead>
+            <tbody>    
+                <% articles.forEach(article =>{ %>
+                    <tr>                                    <!-- crio o corpo da tabela -->
+                        <td> <%- article.id %> </td>
+                        <td> <%- article.title %> </td>
+                        <td> <%- article.slug %> </td>
+                        <td> <%- article.category.title %> </td>
+                        <td>
+                            <a href="/admin/articles/edit/<%- article.id %>" class="btn btn-warning">Editar</a>
+                            <form action="/articles/delete" method="post" onsubmit="ConfirmarApagar(event, this)" style="display: inline;">
+                                <input type="hidden" name="id" value="<%- article.id %>">
+                                <button class="btn btn-danger">Deletar</button>
+                            </form>
+                        </td>
+                    
+                    </tr>
+                <% }) %> 
+            </tbody>
+        </table>
+    </div>
+</body>
+<%- include('../../partials/footer.ejs') %>

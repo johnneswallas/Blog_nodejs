@@ -1,0 +1,44 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
+<body>
+    <div class="container">
+        <hr>
+        <div class="card">
+            <div class="card-head">
+                <h2>Edição de artigo</h2>
+            </div>
+            <div class="card-body">
+                <form action="/articles/update" method="post">
+                    <h3>Título</h3>
+                    <input type="text" name="title" placeholder="Defina o título da categoria"  value="<%- articles.title %> " required><br><br>
+                    <input type="hidden" name="id" value="<%- articles.id %> ">
+                    <textarea class="form-control" id="article" name="body" placeholder="Descreva o artigo aqui"><%- articles.body %></textarea>
+                    <select class="form-control" name="category">
+                        <% category.forEach((category) =>{ %>
+                            <% if(articles.categoryId === category.id){ %>
+                                <option value="<%- category.id %> " selected><%- category.title %></option>
+                                <% }else{ %>
+                                    <option value="<%- category.id %> "><%- category.title %></option>
+                            <% } %>  
+                                
+                        <% }) %>
+                    </select>
+                    <br><br>
+                    <button class="btn btn-success">Atualizar</button>
+                </form>
+            </div>    
+        </div>
+    </div>
+</body>
+<%- include('../../partials/footer.ejs') %>
+<script src="/tinymce\js\tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        selector: "#article",
+        branding: false,
+        language: 'pt_BR',
+        plugins: ['directionality','advlist','autolink','link','image','lists','print','preview','hr','searchreplace',
+         'wordcount', 'fullscreen', 'insertdatetime', 'media', 'save', 'table', 'paste', 'emoticons']
+        
+    })
+</script>
